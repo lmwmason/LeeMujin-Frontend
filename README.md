@@ -2,4 +2,4 @@
 
 LeeMujinsite frontend
 
-To watch frontend : https://github.com/lmwmason/LeeMujin-backend
+To watch backend : backend(https://github.com/lmwmason/LeeMujin-backend)
