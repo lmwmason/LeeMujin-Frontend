@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import VideoCard from '../components/VideoCard';
+import { Analytics } from "@vercel/analytics/react"
 
 const API_BASE_URL = 'https://lee-mujin-api-ver10.vercel.app/api/';
 
