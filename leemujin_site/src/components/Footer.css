@@ -1,0 +1,53 @@
+/* src/components/Footer.css */
+.footer-container {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    border-top: 1px solid var(--tab-border-color);
+    padding: 40px 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.personal-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.personal-info a,
+.mujin-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.personal-info a:hover,
+.mujin-links a:hover {
+    text-decoration: underline;
+}
+
+.mujin-links {
+    margin-top: 20px;
+}
+
+.mujin-links h4 {
+    margin-bottom: 10px;
+}
+
+.mujin-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.mujin-links li {
+    font-size: 14px;
+}
