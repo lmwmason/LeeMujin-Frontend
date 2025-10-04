@@ -1,10 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import VideoCard from '../components/VideoCard';
 import { Analytics } from "@vercel/analytics/react"
 
+
 const API_BASE_URL = 'https://lee-mujin-api-ver10.vercel.app/api/';
 
+const reloadKakaoAd = () => {
+    if (window.kakao_ad_area && typeof window.kakao_ad_area.reloadAll === 'function') {
+        console.log('AdFit: window.kakao_ad_area.reloadAll() 호출');
+        window.kakao_ad_area.reloadAll();
+    } else {
+        console.log('AdFit: 새로고침 함수 (window.kakao_ad_area.reloadAll) 준비되지 않음');
+    }
+};
+
+
 const Home = () => {
+    useEffect(() => {
+        if (document.querySelector('script[src*="ba.min.js"]')) {
+            console.log('AdFit: 스크립트가 이미 로드되었습니다.');
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.setAttribute("src", "//t1.daumcdn.net/kas/static/ba.min.js");
+        script.setAttribute("charset", "utf-8");
+        script.setAttribute("async", "true");
+
+        document.body.appendChild(script);
+        setTimeout(reloadKakaoAd, 1000);
+    }, []);
+
+
     const [videos, setVideos] = useState([]);
     const [activeTab, setActiveTab] = useState('all');
     const [loading, setLoading] = useState(true);
@@ -58,6 +85,12 @@ const Home = () => {
         fetchVideos();
     }, [activeTab]);
 
+    useEffect(() => {
+        if (!loading) {
+            reloadKakaoAd();
+        }
+    }, [loading, activeTab]);
+
     const tabs = [
         { name: '전체', key: 'all' },
         { name: '노래', key: 'songs' },
@@ -92,13 +125,21 @@ const Home = () => {
                 <div className="video-grid">
                     {videos.length > 0 ? (
                         videos.map((video, index) => (
-                            <VideoCard key={index} video={video} />
+                            <VideoCard key={index} video={video}/>
                         ))
                     ) : (
                         <div className="no-videos">해당 카테고리의 영상이 없습니다.</div>
                     )}
                 </div>
             )}
+
+            <div className="ad-container">
+                <ins className="kakao_ad_area"
+                     data-ad-unit="DAN-CLY0wiy7WxQp6gbK"
+                     data-ad-width="320"
+                     data-ad-height="100"></ins>
+            </div>
+            <Analytics />
         </div>
     );
 };
