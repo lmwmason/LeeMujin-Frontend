@@ -132,7 +132,8 @@ const Home = () => {
                     )}
                 </div>
             )}
-            <h1>' '</h1>
+            <h1> </h1>
+            <h1> </h1>
             <div className="ad-container">
                 <ins className="kakao_ad_area"
                      data-ad-unit="DAN-CLY0wiy7WxQp6gbK"
