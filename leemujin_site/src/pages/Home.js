@@ -132,8 +132,20 @@ const Home = () => {
                     )}
                 </div>
             )}
-            <h1> </h1>
-            <h1> </h1>
+
+            const Spacer = ({ height = '16px' }) => {
+              return <div style={{ height: height }} />;
+            };
+            
+            function ParentComponent() {
+              return (
+                <div>
+                  <ComponentA />
+                  <Spacer height="40px" />
+                  <ComponentB />
+                </div>
+              );
+            }
             <div className="ad-container">
                 <ins className="kakao_ad_area"
                      data-ad-unit="DAN-CLY0wiy7WxQp6gbK"
